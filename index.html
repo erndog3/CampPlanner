@@ -22,11 +22,30 @@
 </head>
 <body>
 	<div id="map"></div>
-
+<div id="directionsPanel"></div>
   <div>
-    <input id="address" type="textbox" style="width:300px;">
+    <input id="address" type="textbox">
     <input type="button" value="Geocode" onclick="geocodeAddress()">
   </div>
+
+<br>
+
+<div>
+	Start
+<br>
+	<input id="start" type="textbox" value="">
+<br>
+	Stopover
+<br>
+	<input id="stopover" type="textbox" value="">
+<br>
+	Destination
+<br>
+	<input id="destination" type="textbox" value="">
+	<input type="button" value="Get Route" onclick="calcRoute()">
+</div>
+
+
 
 
 </body>

@@ -34,17 +34,54 @@ function geocodeAddress() {
 		function (results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				map.setCenter(results[0].geometry.location);
+
 				var marker = new google.maps.Marker({
 					map: map,
-					position: results[0].geometry.location
+					position: results[0].geometry.location,
 				});
 				map.setZoom(17);
 				map.panTo(marker.position)
 			}
 			else {
-				alert("Geocode failed with the following error: " + status);
+				console.log("Geocode failed with the following error: " + status);
 			}
 		});
+
+
+}
+
+function calcRoute() {
+	var directionsService = new google.maps.DirectionsService();
+
+	var directionsDisplay;
+	directionsDisplay = new google.maps.DirectionsRenderer();
+	directionsDisplay.setMap(map);
+	directionsDisplay.setPanel(document.getElementById("directionsPanel"));
+
+	var start = document.getElementById("start").value;
+	var end = document.getElementById("destination").value;
+	var waypoints = [];
+
+	$("#stopover").push(waypoints);
+
+	var request = {
+		origin: start,
+		waypoints: waypoints,
+		optimizeWaypoints: false,
+		destination: end,
+		travelMode : google.maps.TravelMode.DRIVING
+	};
+
+	directionsService.route(request,function (result, status) {
+		if (status == google.maps.DirectionsStatus.OK) {
+			directionsDisplay.setDirections(result);
+		}
+		else {
+			console.log("Could not calculate directions. Try again, or buy a map!");
+		}
+	});
+
+
 
 
 }
