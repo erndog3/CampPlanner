@@ -19,6 +19,7 @@ map = new google.maps.Map(document.getElementById("map"), {
 		var marker = new google.maps.Marker({
 			map: map,
 			position: pos
+
 		});
 			map.setCenter(pos);
 			map.setZoom(10);
@@ -38,7 +39,9 @@ function geocodeAddress() {
 				var marker = new google.maps.Marker({
 					map: map,
 					position: results[0].geometry.location,
+					animation: google.maps.Animation.DROP,
 				});
+
 				map.setZoom(17);
 				map.panTo(marker.position)
 			}
@@ -80,6 +83,8 @@ function calcRoute() {
 			console.log("Could not calculate directions. Try again, or buy a map!");
 		}
 	});
+
+$("#directionsPanel").empty();
 
 
 
