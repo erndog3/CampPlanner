@@ -60,14 +60,14 @@ function calcRoute() {
 
 	var start = document.getElementById("start").value;
 	var end = document.getElementById("destination").value;
-	var waypoints = [];
-
-	$("#stopover").push(waypoints);
+	var waypoints = [
+		{ location: document.getElementById("stopover").value,
+		  stopover: true}];
 
 	var request = {
 		origin: start,
 		waypoints: waypoints,
-		optimizeWaypoints: false,
+		optimizeWaypoints: true,
 		destination: end,
 		travelMode : google.maps.TravelMode.DRIVING
 	};
