@@ -65,14 +65,7 @@ function calcRoute() {
 	var end = document.getElementById("destination").value;
 	var waypoints = [
 		{ location: document.getElementById("stopover1").value,
-		  stopover: true},
-		  { location: document.getElementById("stopover2").value,
-		  stopover: true},
-		  { location: document.getElementById("stopover3").value,
-		  stopover: true},
-		  { location: document.getElementById("stopover4").value,
 		  stopover: true}];
-
 
 	var request = {
 		origin: start,
@@ -92,5 +85,8 @@ function calcRoute() {
 	});
 
 $("#directionsPanel").empty();
+
+
+
 
 }
