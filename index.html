@@ -11,7 +11,7 @@
 
 <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
 
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVJQpTcv7qBcGDnPjz-EPVOzKKKE9f_JI"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVJQpTcv7qBcGDnPjz-EPVOzKKKE9f_JI&libraries=places"></script>
 
 <script type="text/javascript" src="assets/javascript/javascript.js">
 </script>
@@ -27,17 +27,21 @@
     <input id="address" type="textbox">
     <input type="button" value="Find Me" onclick="geocodeAddress()">
   </div>
+ <br>
+ 	<div>
+ 	 <input type="button" value="Locate" onclick="geolocation()">
+ 	</div>
 
 <br>
 
 <div>
 	Start
 <br>
-	<input id="start" type="textbox" value="">
+	<input id="start" type="textbox" class="autofiller">
 <br>
 	Stopover 1
 <br>
-	<input id="stopover1" type="textbox" value="">
+	<input id="stopover1" type="textbox" value="" required="required">
 <br>
 	Stopover 2
 <br>

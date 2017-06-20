@@ -1,5 +1,7 @@
-var map, infoWindow;
+var map, infoWindow, pos;
 var geocoder = new google.maps.Geocoder();
+
+google.maps.event.addDomListener(window, "load", initMap);
 
 function initMap() {
 var center = {lat: 34.059476, lng: -118.446126};
@@ -7,10 +9,14 @@ map = new google.maps.Map(document.getElementById("map"), {
           zoom: 6,
           center: center
         });
+
+}
+
+function geolocation() {
 	infoWindow = new google.maps.InfoWindow;
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
-			var pos = {
+			pos = {
 				lat: position.coords.latitude,
 				lng: position.coords.longitude
 			};
@@ -23,11 +29,53 @@ map = new google.maps.Map(document.getElementById("map"), {
 		});
 			map.setCenter(pos);
 			map.setZoom(10);
+var service = new google.maps.places.PlacesService(map);
+  service.nearbySearch({
+    location: pos,
+    radius: 500000,
+    type: ['campground']
+
+ }, callback);
+	var fields = $(".autofiller");
+	fields.each(function() {
+		$(this).val(pos.lat + " , " + pos.lng);
+	});					
 		})
-	}
+
 }
 
-google.maps.event.addDomListener(window, "load", initMap);
+
+	
+
+
+}
+
+function callback(results, status) {
+  if (status === google.maps.places.PlacesServiceStatus.OK) {
+    for (var i = 0; i < results.length; i++) {
+      createMarker(results[i]);
+    }
+  }
+}
+
+function createMarker(place) {
+  var placeLoc = place.geometry.location;
+  var marker = new google.maps.Marker({
+    map: map,
+    position: place.geometry.location,
+    icon: 'campfire.png'
+  });
+      var infoWindow = new google.maps.InfoWindow({
+      	content: place.name
+      	});
+ google.maps.event.addListener(marker, 'click', function() {
+      console.log(place)
+  infoWindow.open(map, this);
+      });
+       	
+
+}
+
 
 function geocodeAddress() {
 	var address = document.getElementById('address').value;
@@ -64,14 +112,20 @@ function calcRoute() {
 	var start = document.getElementById("start").value;
 	var end = document.getElementById("destination").value;
 	var waypoints = [
+
 		{ location: document.getElementById("stopover1").value,
 		  stopover: true},
-		  { location: document.getElementById("stopover2").value,
-		  stopover: true},
-		  { location: document.getElementById("stopover3").value,
-		  stopover: true},
-		  { location: document.getElementById("stopover4").value,
-		  stopover: true}];
+		//   { location: document.getElementById("stopover2").value,
+		//   stopover: true},
+		//   { location: document.getElementById("stopover3").value,
+		//   stopover: true},
+		//   { location: document.getElementById("stopover4").value,
+		//   stopover: true}
+];
+	var stopover2 = document.getElementById("stopover2").value
+	if (stopover2) {
+		waypoints.push({location: stopover2, stopover: true})
+	};
 
 
 	var request = {
