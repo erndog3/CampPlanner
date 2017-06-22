@@ -40,15 +40,11 @@ var service = new google.maps.places.PlacesService(map);
 	var fields = $(".autofiller");
 	fields.each(function() {
 		$(this).val(pos.lat + " , " + pos.lng);
-	});					
+			});					
 		})
 
-}
-
-
+	}
 	
-
-
 }
 
 function callback(results, status) {
@@ -92,31 +88,6 @@ waypoints.push({
 	
 } 
 
-
-// function geocodeAddress() {
-// 	var address = document.getElementById('address').value;
-// 	geocoder.geocode({ 'address': address},
-// 		function (results, status) {
-// 			if (status == google.maps.GeocoderStatus.OK) {
-// 				map.setCenter(results[0].geometry.location);
-
-// 				var marker = new google.maps.Marker({
-// 					map: map,
-// 					position: results[0].geometry.location,
-// 					animation: google.maps.Animation.DROP,
-// 				});
-
-// 				map.setZoom(17);
-// 				map.panTo(marker.position)
-// 			}
-// 			else {
-// 				console.log("Geocode failed with the following error: " + status);
-// 			}
-// 		});
-
-
-// }
-
 function calcRoute() {
 	var directionsService = new google.maps.DirectionsService();
 
@@ -131,16 +102,6 @@ function calcRoute() {
 		alert("No End Destination Set!")
 		return
 	};
-	// waypoints = [
-
-	// 	{ location: document.getElementById("stopover1").value,
-	// 	  stopover: true},
-
-// ];
-	// var stopover2 = document.getElementById("stopover2").value
-	// if (stopover2) {
-	// 	waypoints.push({location: stopover2, stopover: true})
-	// };
 
 console.log("waypoints", waypoints)
 	var request = {
