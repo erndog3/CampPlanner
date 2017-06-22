@@ -23,10 +23,10 @@
 <body>
 	<div id="map"></div>
 <div id="directionsPanel"></div>
-  <div>
+<!--   <div>
     <input id="address" type="textbox">
     <input type="button" value="Find Me" onclick="geocodeAddress()">
-  </div>
+  </div> -->
  <br>
  	<div>
  	 <input type="button" value="Locate" onclick="geolocation()">
@@ -39,26 +39,13 @@
 <br>
 	<input id="start" type="textbox" class="autofiller">
 <br>
-	Stopover 1
+	Stopovers
 <br>
-	<input id="stopover1" type="textbox" value="" required="required">
-<br>
-	Stopover 2
-<br>
-	<input id="stopover2" type="textbox" value="">
-<br>
-	Stopover 3
-<br>
-	<input id="stopover3" type="textbox" value="">
-<br>
-	Stopover 4
-<br>
-	<input id="stopover4" type="textbox" value="">
-
+	<ol id="Stopovers"></ol>
 <br>
 	End
 <br>
-	<input id="destination" type="textbox" value="">
+	<input id="destination" type="textbox" value="" required>
 	<input type="button" value="Get Route" onclick="calcRoute()">
 </div>
 
