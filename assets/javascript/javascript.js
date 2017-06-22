@@ -60,7 +60,7 @@ function callback(results, status) {
 //creates tent markers for every campgrounds located near the location
 function createMarker(place) {
   var placeLoc = place.geometry.location;
-  var infoWindow = new google.maps.InfoWindow({
+  infoWindow = new google.maps.InfoWindow({
       	content: " ",
       	});
   var marker = new google.maps.Marker({
@@ -98,7 +98,9 @@ waypoints.push({
 
 	$("#Stopovers").append(newStop);
 
-
+	if (infoWindow) {
+		infoWindow.close();
+	}
 }
 
 
