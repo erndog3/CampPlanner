@@ -68,8 +68,8 @@ function createMarker(place) {
 
  google.maps.event.addListener(marker, 'click', function() {
       console.log(place)
-  infoWindow.setContent('<h3 style="text-align: center;">' + place.name + '</h>' + '<br>' + 
-  						'<button onclick="addMe()">Add to Trip</button>');
+  infoWindow.setContent('<h3 style="text-align: center;">' + place.name + '</h3>' + '<br>' + 
+  						'<button onclick="addMe()" style="margin: auto">Add to Trip</button>');
   infoWindow.open(map, this);
  	stopover = place.name;
       });
@@ -78,15 +78,33 @@ function createMarker(place) {
 }
 
 function addMe() {
+	var newStop = $('<li>' + stopover + '</li>');
+
+var cancel = $("<button>");
+
+cancel.addClass("cancelbtn");
+cancel.append("X");
+
+newStop.append(cancel);
 
 console.log("stopover", stopover);
 waypoints.push({
 			location: stopover,
 			stopover: true});
 
-	$("#Stopovers").append('<li>' + stopover + '</li>');
-	
-} 
+	$("#Stopovers").append(newStop);
+
+
+}
+
+
+$(document).on('click', ".cancelbtn", function() {
+	var index = $(this).parent().index();
+	console.log(index);
+		$(this).parent().remove();
+		waypoints.splice(index, 1);
+		console.log(waypoints);
+})
 
 function calcRoute() {
 	var directionsService = new google.maps.DirectionsService();
@@ -122,5 +140,6 @@ console.log("waypoints", waypoints)
 	});
 
 $("#directionsPanel").empty();
+
 
 }
