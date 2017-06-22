@@ -63,7 +63,7 @@ function createMarker(place) {
   var marker = new google.maps.Marker({
     map: map,
     position: place.geometry.location,
-    icon: 'campfire.png'
+    icon: 'tent marker.png'
   });
       var infoWindow = new google.maps.InfoWindow({
       	content: place.name
