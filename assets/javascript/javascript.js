@@ -4,6 +4,7 @@ var geocoder = new google.maps.Geocoder();
 
 google.maps.event.addDomListener(window, "load", initMap);
 
+//starts up the map when the document gets loaded
 function initMap() {
 var center = {lat: 34.059476, lng: -118.446126};
 map = new google.maps.Map(document.getElementById("map"), {
@@ -13,6 +14,7 @@ map = new google.maps.Map(document.getElementById("map"), {
 
 }
 
+//asks if the user wants to use current location and fills the start destination input
 function geolocation() {
 	infoWindow = new google.maps.InfoWindow;
 	if (navigator.geolocation) {
@@ -55,6 +57,7 @@ function callback(results, status) {
   }
 }
 
+//creates tent markers for every campgrounds located near the location
 function createMarker(place) {
   var placeLoc = place.geometry.location;
   var infoWindow = new google.maps.InfoWindow({
@@ -77,6 +80,7 @@ function createMarker(place) {
 
 }
 
+// Adds name of campground and remove button to the stopover list
 function addMe() {
 	var newStop = $('<li>' + stopover + '</li>');
 
@@ -106,6 +110,8 @@ $(document).on('click', ".cancelbtn", function() {
 		console.log(waypoints);
 })
 
+//gets the directions and displays in the directions panel and prevents the 
+//button from working if the end destination is empty
 function calcRoute() {
 	var directionsService = new google.maps.DirectionsService();
 
