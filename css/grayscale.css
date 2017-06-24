@@ -1,8 +1,4 @@
-/*!
- * Start Bootstrap - Grayscale v3.3.7+1 (http://startbootstrap.com/template-overviews/grayscale)
- * Copyright 2013-2016 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
- */
+
 body {
   width: 100%;
   height: 100%;
@@ -10,13 +6,20 @@ body {
   background-color: black;
   text-decoration-color: gray;
   color: red;
+
 }
 html {
   width: 100%;
   height: 100%;
 }
 
+.adp, .adp table {
+    font-family: Roboto,Arial,sans-serif;
+    font-weight: 300;
+    color: white;
+}
 #start1, #stopover1, #end {
+  background-color: white;
   color: black;
 }
 h1,
@@ -166,7 +169,7 @@ a:focus {
 }
 
 #map {
-        height: 50%;
+        height: 100%;
         width: 100%;
 }
 #Stopovers {
@@ -247,7 +250,7 @@ ul.banner-social-buttons {
   }
 }
 footer {
-  padding: 50px 0;
+  padding: 5px 0;
 }
 footer p {
   margin: 0;

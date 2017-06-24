@@ -4,17 +4,8 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-// jQuery to collapse the navbar on scroll
-function collapseNavbar() {
-    if ($(".navbar").offset().top > 50) {
-        $(".navbar-fixed-top").addClass("top-nav-collapse");
-    } else {
-        $(".navbar-fixed-top").removeClass("top-nav-collapse");
-    }
-}
 
-$(window).scroll(collapseNavbar);
-$(document).ready(collapseNavbar);
+
 
 // jQuery for page scrolling feature - requires jQuery Easing plugin
 $(function() {
@@ -27,10 +18,6 @@ $(function() {
     });
 });
 
-// Closes the Responsive Menu on Menu Item Click
-$('.navbar-collapse ul li a').click(function() {
-    $(".navbar-collapse").collapse('hide');
-});
 
 var map, infoWindow, pos, stopover;
 var waypoints = [];
@@ -38,6 +25,7 @@ var geocoder = new google.maps.Geocoder();
 
 google.maps.event.addDomListener(window, "load", initMap);
 
+//starts up the map when the document gets loaded
 function initMap() {
 var center = {lat: 34.059476, lng: -118.446126};
 map = new google.maps.Map(document.getElementById("map"), {
@@ -47,6 +35,7 @@ map = new google.maps.Map(document.getElementById("map"), {
 
 }
 
+//asks if the user wants to use current location and fills the start destination input
 function geolocation() {
     infoWindow = new google.maps.InfoWindow;
     if (navigator.geolocation) {
@@ -73,7 +62,7 @@ var service = new google.maps.places.PlacesService(map);
  }, callback);
     var fields = $(".autofiller");
     fields.each(function() {
-        $(this).val('<p style="color: black;">' + pos.lat + " , " + pos.lng + '</p>');
+        $(this).val(pos.lat + " , " + pos.lng);
             });                 
         })
 
@@ -89,6 +78,7 @@ function callback(results, status) {
   }
 }
 
+//creates tent markers for every campgrounds located near the location
 function createMarker(place) {
   var placeLoc = place.geometry.location;
   infoWindow = new google.maps.InfoWindow({
@@ -102,7 +92,7 @@ function createMarker(place) {
 
  google.maps.event.addListener(marker, 'click', function() {
       console.log(place)
-  infoWindow.setContent('<h3 style="text-align: center; color: black;">' + place.name + '</h3>' + '<br>' + 
+  infoWindow.setContent('<h3 style="text-align: center;">' + place.name + '</h3>' + '<br>' + 
                         '<button onclick="addMe()" style="margin: auto">Add to Trip</button>');
   infoWindow.open(map, this);
     stopover = place.name;
@@ -111,6 +101,7 @@ function createMarker(place) {
 
 }
 
+// Adds name of campground and remove button to the stopover list
 function addMe() {
     var newStop = $('<li>' + stopover + '</li>');
 
@@ -128,9 +119,9 @@ waypoints.push({
 
     $("#Stopovers").append(newStop);
 
- if (infoWindow) {
-    infoWindow.close();
- }
+    if (infoWindow) {
+        infoWindow.close();
+    }
 }
 
 
@@ -142,6 +133,8 @@ $(document).on('click', ".cancelbtn", function() {
         console.log(waypoints);
 })
 
+//gets the directions and displays in the directions panel and prevents the 
+//button from working if the end destination is empty
 function calcRoute() {
     var directionsService = new google.maps.DirectionsService();
 
